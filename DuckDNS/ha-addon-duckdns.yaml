@@ -1,0 +1,26 @@
+# https://github.com/home-assistant/addons/tree/master/duckdns
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: duckdns
+  name: duckdns
+  namespace: homeassist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: duckdns
+  template:
+    metadata:
+      labels:
+        app: duckdns
+    spec:
+      containers:
+        - image: homeassistant/armv7-addon-duckdns
+          name: duckdns
+          # make container stay running
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 30; done;" ]
+          

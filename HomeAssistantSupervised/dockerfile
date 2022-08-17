@@ -1,0 +1,17 @@
+FROM debian
+
+ENV HAARCH=x86_64
+
+# updates and prereqs
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install jq wget curl avahi-daemon udisks2 libglib2.0-bin network-manager dbus apparmor -y
+
+# install Docker
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh 
+# && usermod -aG docker pi
+
+# install HA OS Agent
+RUN wget https://github.com/home-assistant/os-agent/releases/download/1.2.2/os-agent_1.2.2_linux_$HAARCH.deb && dpkg -i os-agent_1.2.2_linux_$HAARCH.deb
+
+#install HA supervised
+RUN wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb && dpkg -i homeassistant-supervised.deb
