@@ -42,3 +42,5 @@ https://networkupstools.org/
    0.002840     Fatal error: unusable configuration
   - This error in the container log indicates you are missing a secret password.
 
+# Presenting Data to Home Assistant
+- https://community.home-assistant.io/t/network-ups-tools-nut-ups-view/362511
